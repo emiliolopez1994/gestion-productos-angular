@@ -1,0 +1,15 @@
+<section class="page-head">
+  <div><div class="eyebrow">PANEL DE CONTROL <span class="dot"></span> INVENTARIO</div>
+    <h2>{{ titulo }}</h2><p>Consulta tus artículos, disponibilidad y precios en un solo lugar.</p></div>
+  <a class="button primary" routerLink="/nuevo-producto">＋ Agregar producto</a>
+</section>
+<section class="stats">
+  <article class="stat"><span>Total de productos</span><strong>{{ productos.length }}</strong><small>Artículos registrados</small></article>
+  <article class="stat"><span>Productos disponibles</span><strong>{{ disponibles }}</strong><small>Listos para entregar</small></article>
+  <article class="stat"><span>Valor del inventario</span><strong>{{ valorInventario | currency:'USD':'symbol':'1.2-2' }}</strong><small>Valor total registrado</small></article>
+</section>
+<section class="panel"><div class="panel-title"><div><h3>Productos registrados</h3><p>Listado actualizado automáticamente</p></div><span class="count">{{ productos.length }} productos</span></div>
+  <div *ngIf="productos.length === 0" class="empty">No hay productos disponibles en este momento. <a routerLink="/nuevo-producto">Crear uno</a>.</div>
+  <div class="table-wrap" *ngIf="productos.length > 0"><table class="tabla-productos"><thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Categoría</th><th>Estado</th><th>Acciones</th></tr></thead>
+    <tbody><tr *ngFor="let prod of productos"><td class="id">#{{ prod.id }}</td><td><span class="product-icon">▣</span><strong>{{ prod.nombre }}</strong></td><td>{{ prod.precio | currency:'USD':'symbol':'1.2-2' }}</td><td>{{ prod.categoria }}</td><td><span class="status" [class.disponible]="prod.disponible" [class.agotado]="!prod.disponible"><span class="status-dot"></span>{{ prod.disponible ? 'Disponible' : 'Agotado' }}</span></td><td><button type="button" class="btn-eliminar" (click)="borrar(prod.id)">Eliminar</button></td></tr></tbody></table></div>
+</section>

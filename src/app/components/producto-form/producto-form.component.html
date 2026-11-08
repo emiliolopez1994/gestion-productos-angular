@@ -1,0 +1,10 @@
+<section class="page-head"><div class="eyebrow">INVENTARIO / NUEVO PRODUCTO</div><h2>Agregar Nuevo Producto</h2><p>Completa los campos para registrar un artículo en el sistema.</p></section>
+<section class="form-container"><div class="form-title"><div class="form-title-icon">＋</div><div><h3>Información del producto</h3><p>Los campos marcados con * son obligatorios</p></div></div>
+  <form (ngSubmit)="guardar()" #productoForm="ngForm">
+    <div class="campo"><label for="nombre">Nombre del producto *</label><input id="nombre" type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" placeholder="Ej. Auriculares Bluetooth" required minlength="2" /></div>
+    <div class="campo"><label for="precio">Precio (USD) *</label><input id="precio" type="number" [(ngModel)]="nuevoProducto.precio" name="precio" min="0" step="0.01" required /></div>
+    <div class="campo"><label for="categoria">Categoría</label><select id="categoria" [(ngModel)]="nuevoProducto.categoria" name="categoria"><option value="Tecnología">Tecnología</option><option value="Accesorios">Accesorios</option><option value="General">General</option></select></div>
+    <label class="campo-checkbox"><input type="checkbox" [(ngModel)]="nuevoProducto.disponible" name="disponible" /><span>Producto disponible</span></label>
+    <div class="actions"><a routerLink="/productos" class="button secondary">Cancelar</a><button type="submit" class="button primary" [disabled]="productoForm.invalid">Guardar Producto</button></div>
+  </form>
+</section>
